@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    restart: always
+    volumes:
+      - ./prom/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./prometheus_data:/prometheus  # Mount the Prometheus data directory
+    ports:
+      - '9090:9090'
+    networks:
+      - monitoring
+
+  grafana:
+    image: grafana/grafana
+    container_name: grafana
+    restart: always
+    volumes:
+      - ./grafana_data:/var/lib/grafana
+    ports:
+      - '3000:3000'
+    networks:
+      - monitoring
+
+  cadvisor:
+    image: google/cadvisor
+    container_name: cadvisor
+    restart: always
+    volumes:
+      - C:/:/rootfs:ro       # For mounting the Windows C: drive
+      - /var/run:/var/run:ro  # Use /var/run instead of //var/run on Windows
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+    ports:
+      - '8080:8080'
+    networks:
+      - monitoring
+
+networks:
+  monitoring:
+    driver: bridge
