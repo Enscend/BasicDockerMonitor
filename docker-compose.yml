@@ -27,6 +27,7 @@ services:
   cadvisor:
     image: google/cadvisor
     container_name: cadvisor
+    privileged: true
     restart: always
     volumes:
       - ${CADVISOR_VOLUME_ROOTFS}:/rootfs:ro  # For mounting the Windows C: drive or Linux Root (per environment variable)
