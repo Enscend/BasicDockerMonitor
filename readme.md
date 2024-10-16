@@ -2,13 +2,22 @@
 
 _Note: ChatGPT did most of the work on this one..._
 
-1. Start it up using Docker Compose
+1. Start it up using Docker Compose via the _runMonitor.bat or _runMonitor.sh scripts (depending on your system type), because we need to set up as environment variable for the system root.
 
 - _assumes you already have Docker properly set up on your system_
 - _docker-commpose.yml is set up to restart:always so it will automatically come back up when you restart the computer_
+
+Windows
 ```
-docker-compose up -d
+C:\your\repo\folder\> _runMonitor_
 ```
+
+Linux
+```
+user@system:~/your/repo/folder$ sudo chmod +x ./_runMonitor.sh
+user@system:~/your/repo/folder$ ./_runMonitor.sh
+```
+
 
 2. Navigate to: https://localhost:3000 to load the Grafana UI
 3. Change the default password for Grafana

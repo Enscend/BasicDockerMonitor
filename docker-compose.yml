@@ -29,8 +29,8 @@ services:
     container_name: cadvisor
     restart: always
     volumes:
-      - C:/:/rootfs:ro       # For mounting the Windows C: drive
-      - /var/run:/var/run:ro  # Use /var/run instead of //var/run on Windows
+      - ${CADVISOR_VOLUME_ROOTFS}:/rootfs:ro  # For mounting the Windows C: drive or Linux Root (per environment variable)
+      - /var/run:/var/run:ro                  # Use /var/run instead of //var/run on Windows
       - /sys:/sys:ro
       - /var/lib/docker/:/var/lib/docker:ro
     ports:
