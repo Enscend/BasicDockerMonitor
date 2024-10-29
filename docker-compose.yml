@@ -25,15 +25,17 @@ services:
       - monitoring
 
   cadvisor:
-    image: google/cadvisor
+    image: gcr.io/cadvisor/cadvisor:latest
     container_name: cadvisor
     privileged: true
     restart: always
     volumes:
       - ${CADVISOR_VOLUME_ROOTFS}:/rootfs:ro  # For mounting the Windows C: drive or Linux Root (per environment variable)
-      - /var/run:/var/run:ro                  # Use /var/run instead of //var/run on Windows
+      - /var/run:/var/run:rw                  # Use /var/run instead of //var/run on Windows
       - /sys:/sys:ro
       - /var/lib/docker/:/var/lib/docker:ro
+    devices:
+      - /dev/kmsg:/dev/kmsg
     ports:
       - '8080:8080'
     networks:
