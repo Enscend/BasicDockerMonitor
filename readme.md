@@ -9,7 +9,7 @@ _Note: ChatGPT did most of the work on this one..._
 
 Windows
 ```
-C:\your\repo\folder\> _runMonitor_
+C:\your\repo\folder\> _runMonitor
 ```
 
 Linux
